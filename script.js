@@ -1,6 +1,6 @@
 function createPopup() {
     var createContainer = document.createElement('div');
-    createContainer.setAttribute('class', 'form-container');
+    createContainer.setAttribute('class', 'form-container center');
     document.body.appendChild(createContainer);
     var container = document.querySelector('div.form-container');
     var createHeading = document.createElement('h2');
@@ -201,3 +201,75 @@ window.addEventListener('scroll', function () {
 });
 
 // TODO setAvatar();
+
+//document.querySelector('.'+storedLang);  ----------- to select span
+
+function setLanguage() {
+    var radioButtons = document.querySelectorAll('input[name="lang"]');
+    var getLanguage = radioButtons.forEach(function(item) {
+        if (item.checked) {
+           var lang = item.getAttribute('data-lang');
+            if (localStorage) {
+                localStorage.setItem("data-lang", lang);
+            }
+            return getLanguage;
+        }
+    });
+    }
+
+// document.addEventListener('load', changeLanguage, false);
+
+var agent = navigator.userAgent.toLowerCase();
+var message = document.getElementById('message');
+switch(agent) {
+    // case agent.indexOf('win') !== -1 && agent.indexOf('64') !== -1 :
+    //     message.innerText = 'Windows 64-bit';
+    //     break;
+    // case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
+    //     message.innerText = 'Windows 32-bit';
+    //     break;
+    // case agent.indexOf('lin') !== -1 :
+    //     message.innerText = 'Linux';
+    //     break;
+    // case agent.indexOf('mac') !== -1 :
+    //     message.innerText = 'MacOS';
+    //     break;
+    case agent.match(\win\) !== -1 && agent.indexOf('64') !== -1 :
+        message.innerText = 'Windows 64-bit';
+        break;
+    case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
+        message.innerText = 'Windows 32-bit';
+        break;
+    case agent.indexOf('lin') !== -1 :
+        message.innerText = 'Linux';
+        break;
+    case agent.indexOf('mac') !== -1 :
+        message.innerText = 'MacOS';
+        break;
+    default:
+        message.innerText = 'OS';
+
+}
+
+function changeLanguage() {
+    var storedLang = localStorage.getItem('data-lang');
+    if (localStorage) {
+        var lang = document.getElementById(storedLang);
+        lang.checked = true;
+    }
+    var langSpan = document.getElementsByClassName('lang');
+    for (var i = 0; i < langSpan.length; i++) {
+        if (langSpan[i].getAttribute('class') === 'lang ' + storedLang) {
+            langSpan[i].setAttribute('display', 'initial');
+        }
+        else {
+            langSpan[i].setAttribute('display', 'none');
+        }
+    }
+}
+changeLanguage();
+var langSelector = document.getElementById('languages');
+langSelector.addEventListener('change', setLanguage, false);
+
+
+

@@ -19,13 +19,13 @@
             <div class="button-container">
             <div id="languages">
                 <label>
-                    <input type="radio" name="lang">UA
+                    <input type="radio" name="lang" id="lang-ua" checked>UA
                 </label>
                 <label>
-                    <input type="radio" name="lang">RU
+                    <input type="radio" name="lang" id="lang-ru">RU
                 </label>
                 <label>
-                    <input type="radio" name="lang">ENG
+                    <input type="radio" name="lang" id="lang-eng">ENG
                 </label>
             </div>
     <input id="signUp" type="button" value="Sign up" onclick="createPopup()">
@@ -35,13 +35,15 @@
 </header>
     <section id="parallax-container">
   <!--<img class="parallax" src="1064610_happy-wallpapers_1920x1080_h.jpg" alt='happy pinguine' />-->
-        <div id="welcome-message">
+        <div id="welcome-message" class="cord center heading">
             <span class="lang lang-ua">Привіт</span>
             <span class="lang lang-ru">Привет</span>
             <span class="lang lang-eng">Hello</span>
             , username!
 
             <span class="lang lang-ua">Раді тебе бачити!</span>
+            <span class="lang lang-ru">Рады тебя видеть!</span>
+            <span class="lang lang-eng">We're glad to see you!</span>
         </div>
     </section>
     <section class='cord obligatory-tasks'>
@@ -50,7 +52,7 @@
             <a href="#"><img src="" alt="download software"></a>
         </div>
         <div class="adv">
-            Download this amazing soft for your
+            Download this amazing soft for your <span id="message"></span>
         </div>
         </div>
         <div class="stopPropagation">
@@ -59,8 +61,8 @@
     </section>
     <section id="parallax">
         <!--<img class="parallax" src="1064610_happy-wallpapers_1920x1080_h.jpg" alt='happy pinguine' />-->
-        <div>
-            <h2>Additional tasks</h2>
+        <div class="center heading">
+            <h3>Additional tasks</h3>
         </div>
     </section>
 <footer class="cord">
