@@ -186,10 +186,6 @@ window.addEventListener('scroll', function () {
     var parallax = document.getElementById('parallax-container');
     var prl = document.getElementById('parallax');
     var posY = document.body.scrollTop;
-    Array.from(document.getElementsByClassName('myClass')).forEach(function (element) {
-        console.log(element.id);
-    });
-
     parallax.style.backgroundPosition = '0px ' + -posY * 0.8 + 'px';
     prl.style.backgroundPosition = '0px ' + (200 + -posY * 0.72) + 'px';
 
@@ -216,25 +212,15 @@ function setLanguage() {
         }
     });
     }
+var langSelector = document.getElementById('languages');
+langSelector.addEventListener('change', setLanguage, false);
 
-// document.addEventListener('load', changeLanguage, false);
+document.addEventListener('load', changeLanguage, false);
 
 var agent = navigator.userAgent.toLowerCase();
 var message = document.getElementById('message');
 switch(agent) {
-    // case agent.indexOf('win') !== -1 && agent.indexOf('64') !== -1 :
-    //     message.innerText = 'Windows 64-bit';
-    //     break;
-    // case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
-    //     message.innerText = 'Windows 32-bit';
-    //     break;
-    // case agent.indexOf('lin') !== -1 :
-    //     message.innerText = 'Linux';
-    //     break;
-    // case agent.indexOf('mac') !== -1 :
-    //     message.innerText = 'MacOS';
-    //     break;
-    case agent.match(\win\) !== -1 && agent.indexOf('64') !== -1 :
+    case agent.indexOf('win') !== -1 && agent.indexOf('64') !== -1 :
         message.innerText = 'Windows 64-bit';
         break;
     case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
@@ -246,10 +232,23 @@ switch(agent) {
     case agent.indexOf('mac') !== -1 :
         message.innerText = 'MacOS';
         break;
-    default:
-        message.innerText = 'OS';
-
 }
+//     case agent.matc !== -1 && agent.indexOf('64') !== -1 :
+//         message.innerText = 'Windows 64-bit';
+//         break;
+//     case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
+//         message.innerText = 'Windows 32-bit';
+//         break;
+//     case agent.indexOf('lin') !== -1 :
+//         message.innerText = 'Linux';
+//         break;
+//     case agent.indexOf('mac') !== -1 :
+//         message.innerText = 'MacOS';
+//         break;
+//     default:
+//         message.innerText = 'OS';
+//
+// }
 
 function changeLanguage() {
     var storedLang = localStorage.getItem('data-lang');
@@ -268,8 +267,6 @@ function changeLanguage() {
     }
 }
 changeLanguage();
-var langSelector = document.getElementById('languages');
-langSelector.addEventListener('change', setLanguage, false);
 
 
 
