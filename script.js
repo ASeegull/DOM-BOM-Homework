@@ -217,38 +217,42 @@ langSelector.addEventListener('change', setLanguage, false);
 
 document.addEventListener('load', changeLanguage, false);
 
+//
+
 var agent = navigator.userAgent.toLowerCase();
 var message = document.getElementById('message');
-switch(agent) {
-    case agent.indexOf('win') !== -1 && agent.indexOf('64') !== -1 :
-        message.innerText = 'Windows 64-bit';
-        break;
-    case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
-        message.innerText = 'Windows 32-bit';
-        break;
-    case agent.indexOf('lin') !== -1 :
-        message.innerText = 'Linux';
-        break;
-    case agent.indexOf('mac') !== -1 :
-        message.innerText = 'MacOS';
-        break;
+if (agent.indexOf('win') !== -1) {
+    message.innerText = 'Windows';
 }
-//     case agent.matc !== -1 && agent.indexOf('64') !== -1 :
+else if (agent.indexOf('lin') !== -1) {
+    message.innerText = 'Linux';
+}
+
+else if (agent.indexOf('mac') !== -1) {
+    message.innerText = 'MacOS';
+}
+
+else {
+    message.innerText = 'OS system'
+}
+
+// switch(agent) {
+//     case (agent.indexOf('win') !== -1 && agent.indexOf('64')):
 //         message.innerText = 'Windows 64-bit';
 //         break;
-//     case agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1 :
+//     case (agent.indexOf('win') !== -1 && agent.indexOf('32') !== -1):
 //         message.innerText = 'Windows 32-bit';
 //         break;
-//     case agent.indexOf('lin') !== -1 :
+//     case (agent.indexOf('lin') !== -1):
 //         message.innerText = 'Linux';
 //         break;
-//     case agent.indexOf('mac') !== -1 :
+//     case (agent.indexOf('mac') !== -1):
 //         message.innerText = 'MacOS';
 //         break;
 //     default:
-//         message.innerText = 'OS';
-//
+//         message.innerText = 'OS system'
 // }
+
 
 function changeLanguage() {
     var storedLang = localStorage.getItem('data-lang');

@@ -10,9 +10,21 @@ body {
     color: #333;
 }
 
+input, label {
+    cursor: pointer;
+}
 a {
     text-decoration: none;
     color: inherit;
+}
+
+a:hover {
+    color: aliceblue;
+}
+
+h1 a:hover {
+    font-size: 41px;
+    transition: all 1s;
 }
 
 .form-container {
@@ -164,4 +176,40 @@ footer {
     -ms-transform: translate(-50%,-50%);
     -o-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
+}
+
+.obligatory-tasks {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.obligatory-tasks > div {
+    border: double 4px white;
+    margin: 50px;
+    width: 35%;
+}
+
+div.showOS {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+div.adv {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+div.stopPropagation {
+    position: relative;
+}
+
+div.stopPropagation .redirection {
+    top: 33%;
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+    left: 20%;
 }
