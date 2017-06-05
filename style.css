@@ -119,6 +119,11 @@ input[type="button"]:hover {
     background-color: aliceblue;
 }
 
+label input[name='lang']:hover {
+    transform: translateY(1px);
+    transition: all 0.5s;
+}
+
 #parallax-container {
     position: relative;
     overflow: hidden;
@@ -198,6 +203,11 @@ div.showOS {
     align-items: center;
 }
 
+.showOS img:hover {
+   transform: translateY(2px);
+    transition: all 0.5s;
+}
+
 div.adv {
     font-size: 24px;
     margin-left: 10px;
@@ -225,4 +235,8 @@ footer h3 {
     display: flex;
     align-self: center;
     text-align: center;
+}
+
+footer a:hover {
+    cursor: wait;
 }

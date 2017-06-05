@@ -93,13 +93,13 @@ joined_lb.setAttribute('for', 'joined');
 formAppend.forEach(function (el) {
     getForm.appendChild(el);
 });
-document.getElementById('signUp').disabled = true;
 
 
 getForm.addEventListener('click', initValidation, false);
 
 function initValidation() {
-    age_in.addEventListener('blur', ageValidation);
+    age_in.addEventListener('blur', ageValidation, false);
+    // age_in.addEventListener('keyup', ageValidation, false);
     username_in.addEventListener('blur', usernameValidation, false);
     joined_in.addEventListener('blur', dateValidation, false);
     nickname_in.addEventListener('blur', nicknameValidation, false);
@@ -109,61 +109,65 @@ function initValidation() {
 
 
 function ageValidation(age_in) {
-    var val = age_in.value;
-    var validate = ( isNaN(val) || val <= 0 || val === '');
+    var validate = (isNaN(+age_in) || (+age_in) <= 0); //Повинно ж давати True якщо дані невірні, не чисельні
     if (!validate) {
-        this.setAttribute('class', 'invalidInput');
-        alert('Your data is invalid');
+        this.setAttribute('class', 'invalidInput'); //Тому має виконуватися оцей блок
+        alert('Your data is invalid');              //Але він виконується ЗАВЖДИ
     }
     else {
-        this.setAttribute('class', 'pass');
-        this.setAttribute('data-valid', 'valid');
+        this.setAttribute('data-valid', 'valid'); //Коли ж все добре, мали б додаватися
+        // додаються дані, які потрібні для валідаіції
+        submitEnable();
     }
 }
 
 
 function usernameValidation(username_in) {
-    var val = username_in.value;
-    var usernameReg = /user_[a-zA-Z0-9*&^$#@]* /;
-    var validate = usernameReg.test(val);
-    if (!validate) {
+    var usernameReg = /^user_[a-zA-Z0-9;:#*%S]*/;//Пробувала оналайн-валідатори регулярних виразів, наче підходило
+    var validate = String(username_in).match(usernameReg); //Я пробувала і варіант з методом test...
+    // без String консолька видає помилку
+
+    if (validate === -1) { // подивилась, мат
         this.setAttribute('class', 'invalidInput');
         alert('Your data is invalid');
     }
     else {
         this.setAttribute('class', 'pass');
         this.setAttribute('data-valid', 'valid');
+        submitEnable();
     }
 }
 
 
 
 function dateValidation(joined_in) {
-    var val = joined_in.value;
-    var dateReg = / [0-9]{2}\/[0-9]{2}\/[0-9]{4} /;
-    var validate = dateReg.test(val);
-    if (!validate) {
+    // var val = joined_in.value;
+    var dateReg = / ^[0-9]{2}\/[0-9]{2}\/[0-9]{4} /;
+    var validate = String(joined_in).match(dateReg);
+    if (validate === -1) {
         this.setAttribute('class', 'invalidInput');
         alert('Your data is invalid');
     }
     else {
         this.setAttribute('class', 'pass');
         this.setAttribute('data-valid', 'valid');
+        submitEnable();
     }
 }
 
 
 function nicknameValidation(nickname_in) {
-    var val = nickname_in.value;
-    var nickReg = / [0-9a-zA-Z]+\.[0-9a-zA-Z]+ /;
-    var validate = nickReg.test(val);
-    if (!validate) {
+    // var val = nickname_in.value;
+    var nickReg = /^ [] $/;
+    var validate = String(nickname_in).match(nickReg);
+    if (validate === -1) {
         this.setAttribute('class', 'invalidInput');
         alert('Your data is invalid');
     }
     else {
         this.setAttribute('class', 'pass');
         this.setAttribute('data-valid', 'valid');
+        submitEnable();
     }
 }
 
@@ -176,4 +180,4 @@ function submitEnable() {
     }
 }
 
-submitEnable();
+
