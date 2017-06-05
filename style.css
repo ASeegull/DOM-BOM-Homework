@@ -8,6 +8,7 @@ body {
     font-family: 'Candara', sans-serif;
     font-size: 16px;
     color: #333;
+    background-color: rgb(111, 129, 249);
 }
 
 input, label {
@@ -146,12 +147,12 @@ img.parallax {
 
 section.obligatory-tasks {
     height: 300px;
-    background-color: rgb(111, 129, 249);
+    /*background-color: rgb(111, 129, 249);*/
 }
 
 footer {
     height: 300px;
-    background-color: rgb(111, 129, 249);
+    /*background-color: rgb(111, 129, 249);*/
 }
 
 
