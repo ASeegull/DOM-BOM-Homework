@@ -7,7 +7,7 @@
 body {
     font-family: 'Candara', sans-serif;
     font-size: 16px;
-    color: #333;
+    color: #515151;
     background-color: rgb(111, 129, 249);
 }
 
@@ -179,13 +179,13 @@ footer {
     transform: translate(-50%,-50%);
 }
 
-.obligatory-tasks {
+.obligatory-tasks, footer.cord {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
 }
 
-.obligatory-tasks > div {
+.obligatory-tasks > div, footer > div {
     border: double 4px white;
     margin: 50px;
     width: 35%;
@@ -213,4 +213,16 @@ div.stopPropagation .redirection {
     font-size: 24px;
     position: absolute;
     left: 20%;
+}
+
+footer > div {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+
+footer h3 {
+    display: flex;
+    align-self: center;
+    text-align: center;
 }

@@ -13,6 +13,10 @@ window.addEventListener('scroll', function () {
     cords.forEach(scrollCords);
 });
 
+document.getElementById("signUp").onclick = function () {
+    location.href = "form.html";
+};
+
 // TODO setAvatar();
 
 //document.querySelector('.'+storedLang);  ----------- to select span
