@@ -127,7 +127,7 @@ function usernameValidation(username_in) {
     var validate = String(username_in).match(usernameReg); //Я пробувала і варіант з методом test...
     // без String консолька видає помилку
 
-    if (validate === -1) { // подивилась, мат
+    if (validate === -1) {
         this.setAttribute('class', 'invalidInput');
         alert('Your data is invalid');
     }

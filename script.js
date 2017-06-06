@@ -21,41 +21,38 @@ document.getElementById("signUp").onclick = function () {
 
 //document.querySelector('.'+storedLang);  ----------- to select span
 
-function setLanguage() {
-    var radioButtons = document.querySelectorAll('input[name="lang"]');
-    var getLanguage = radioButtons.forEach(function(item) {
-        if (item.checked) {
-           var lang = item.getAttribute('data-lang');
-            if (localStorage) {
-                localStorage.setItem("data-lang", lang);
-            }
-            return getLanguage;
-        }
-    });
-    }
-var langSelector = document.getElementById('languages');
-langSelector.addEventListener('change', setLanguage, false);
-
-document.addEventListener('load', changeLanguage, false);
-
+//function setLanguage() {
+//    var radioButtons = document.querySelectorAll('input[name="lang"]');
+//    var getLanguage = function(radioButtons) {
+//        for (var i = 0; i <= radioButtons.length; i++) {
+//            if (item.checked) {
+//           var lang = item.getAttribute('data-lang');
+//            if (localStorage) {
+//                localStorage.setItem("data-lang", lang);
+//            }
+//        }
+//        }
+//    }
+//    }
+//
+//setLanguage();
+//
+//var langSelector = document.getElementById('languages');
+//langSelector.addEventListener('change', setLanguage, false);
+//
+//document.addEventListener('load', changeLanguage, false);
 //
 
 var agent = navigator.userAgent.toLowerCase();
 var message = document.getElementById('message');
-if ( (agent.indexOf('win') !== -1) ){
+if ((agent.indexOf('win') !== -1)) {
     message.innerText = 'Windows';
-}
-
-else if (agent.indexOf('lin') !== -1) {
+} else if (agent.indexOf('lin') !== -1) {
     message.innerText = 'Linux';
-}
-
-else if (agent.indexOf('mac') !== -1) {
+} else if (agent.indexOf('mac') !== -1) {
     message.innerText = 'MacOS';
-}
-
-else {
-    message.innerText = 'OS system'
+} else {
+    message.innerText = 'OS system';
 }
 
 // switch(agent) {
@@ -75,23 +72,57 @@ else {
 //         message.innerText = 'OS system'
 // }
 
+//
+//function checkLanguage() {    
+//    if (localStorage) {
+//        var storedLang = localStorage.getItem('data-lang');
+//        var lang = document.getElementById(storedLang);
+//        lang.checked = true;
+//        return;
+//    }
+//}
+//
 
-function changeLanguage() {
-    var storedLang = localStorage.getItem('data-lang');
-    if (localStorage) {
-        var lang = document.getElementById(storedLang);
-        lang.checked = true;
-    }
-    var langSpan = document.getElementsByClassName('lang');
-    for (var i = 0; i < langSpan.length; i++) {
-        if (langSpan[i].getAttribute('class') === 'lang ' + storedLang) {
-            langSpan[i].setAttribute('display', 'initial');
+var radioButtons = document.querySelectorAll('input[name="lang"]');
+var localLang = localStorage.language;
+ 
+         
+       document.onload = function() {
+            if (localLang) { //якщо є збережена мова
+        for (var i = 0; i <= radioButtons.length; i++) { //пройдися по всіх кнопках 
+            if (radioButtons[i].getAttribute('id') === localLang) { //якщо айдішка така ж як мова,
+                radioButtons[i].setAttribute('checked', 'checked'); //відмічає її
+                debugger;
+            }
+            else {
+                localStorage.setItem('language', 'lang-ua'); //Якщо мови нема у стореджі - задає дефолтну українську мову
+            }
+            changeLanguage(); //запускає зміну мови
+        }
+ } 
+        }
+       
+  document.getElementById('languages').addEventListener('change', setLanguage, false); //Запускає функції при зміні опції
+
+function setLanguage() {
+     for (var i = 0; i <= radioButtons.length; i++) {
+            if (radioButtons[i].checked) { // шукає чекнуту опцію
+           var lang = radioButtons[i].getAttribute('id'); //Бере її атрибут з дата-ленг ('lang-ua') наприклад
+                localStorage.setItem("language", lang); //Зберігає мову у локал стореджі 
+                changeLanguage(); //Запускає функцію зміни мови
+}
+     }
+}
+      
+
+function changeLanguage(localLang) {
+    var langSpan = document.getElementsByClassName('lang'); //обирає усі спани з перекладами
+    for (var i = 0; i < langSpan.length; i++) { //прозодиться по кожному
+        if (langSpan[i].getAttribute('id') === localLang) { //звіряє з айдішкою
+            langSpan[i].setAttribute('display', 'initial'); //та відновлює відображення за деолтом, якщо мова пасує
         }
         else {
-            langSpan[i].setAttribute('display', 'none');
+            langSpan[i].setAttribute('display', 'none'); //ховає, якщо не підходить
         }
     }
 }
-changeLanguage();
-
-
