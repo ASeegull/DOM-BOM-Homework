@@ -82,47 +82,48 @@ if ((agent.indexOf('win') !== -1)) {
 //    }
 //}
 //
-
 var radioButtons = document.querySelectorAll('input[name="lang"]');
 var localLang = localStorage.language;
- 
-         
-       document.onload = function() {
-            if (localLang) { //якщо є збережена мова
-        for (var i = 0; i <= radioButtons.length; i++) { //пройдися по всіх кнопках 
-            if (radioButtons[i].getAttribute('id') === localLang) { //якщо айдішка така ж як мова,
-                radioButtons[i].setAttribute('checked', 'checked'); //відмічає її
-                debugger;
-            }
-            else {
-                localStorage.setItem('language', 'lang-ua'); //Якщо мови нема у стореджі - задає дефолтну українську мову
-            }
-            changeLanguage(); //запускає зміну мови
-        }
- } 
-        }
-       
-  document.getElementById('languages').addEventListener('change', setLanguage, false); //Запускає функції при зміні опції
+
+
+function getLang() {
+  if (localLang) { //якщо є збережена мова
+    var radioButtons = document.querySelectorAll('input[name="lang"]');
+    var localLang = localStorage.language;
+    var localLang = localStorage.language;
+    for (var i = 0; i <= radioButtons.length; i++) { //пройдися по всіх кнопках 
+      if (radioButtons[i].value === localLang) { //якщо айдішка така ж як мова,
+        radioButtons[i].setAttribute('checked', 'checked'); //відмічає її
+      } else {
+        localStorage.setItem('language', 'lang-ua'); //Якщо мови нема у стореджі - задає дефолтну українську мову
+      }
+      changeLanguage(localLang); //запускає зміну мови
+    }
+  }
+}
+document.addEventListener("DOMContentLoaded", getLang);
+document.getElementById('languages').addEventListener('change', setLanguage, true); //Запускає функції при зміні опції
 
 function setLanguage() {
-     for (var i = 0; i <= radioButtons.length; i++) {
-            if (radioButtons[i].checked) { // шукає чекнуту опцію
-           var lang = radioButtons[i].getAttribute('id'); //Бере її атрибут з дата-ленг ('lang-ua') наприклад
-                localStorage.setItem("language", lang); //Зберігає мову у локал стореджі 
-                changeLanguage(); //Запускає функцію зміни мови
+  for (var i = 0; i <= radioButtons.length; i++) {
+    var radioButtons = document.querySelectorAll('input[name="lang"]');
+    var localLang = localStorage.language;
+    if (radioButtons[i].checked) { // шукає чекнуту опцію
+      var lang = radioButtons[i].value; //Бере її атрибут з дата-ленг ('lang-ua') наприклад
+      localStorage.setItem("language", lang); //Зберігає мову у локал стореджі 
+      changeLanguage(localLang); //Запускає функцію зміни мови
+    }
+  }
 }
-     }
-}
-      
+
 
 function changeLanguage(localLang) {
-    var langSpan = document.getElementsByClassName('lang'); //обирає усі спани з перекладами
-    for (var i = 0; i < langSpan.length; i++) { //прозодиться по кожному
-        if (langSpan[i].getAttribute('id') === localLang) { //звіряє з айдішкою
-            langSpan[i].setAttribute('display', 'initial'); //та відновлює відображення за деолтом, якщо мова пасує
-        }
-        else {
-            langSpan[i].setAttribute('display', 'none'); //ховає, якщо не підходить
-        }
+  var langSpan = document.getElementsByClassName('lang'); //обирає усі спани з перекладами
+  for (var i = 0; i < langSpan.length; i++) { //прозодиться по кожному
+    if (langSpan[i].value === localLang) { //звіряє з айдішкою
+      langSpan[i].setAttribute('display', 'initial'); //та відновлює відображення за деолтом, якщо мова пасує
+    } else {
+      langSpan[i].setAttribute('display', 'none'); //ховає, якщо не підходить
     }
+  }
 }
