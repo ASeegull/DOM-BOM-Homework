@@ -175,6 +175,7 @@ function submitEnable() {
     }
 }
 
-document.getElementById("submit").onclick = function() {
-        location.href = "index.html";
+document.getElementById("submit").onclick = function(e) {
+	e.preventDefault();
+    location.href = "index.html";
     };
