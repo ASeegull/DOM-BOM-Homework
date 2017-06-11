@@ -112,29 +112,20 @@ function initValidation() {
 }
 
 
-function checkInput(validate, input) {
-	if (!validate) {
-        input.setAttribute('class', 'invalidInput');
-        alert('Your data is invalid');
-    } else {
-        input.setAttribute('class', 'pass');
-        input.setAttribute('data-valid', 'valid');
-        submitEnable();
-    }
-}
-
 function ageValidation() {
-	var age = document.getElementById('age');
+	var input = document.getElementById('age'),
+		regAge = /\d+/,
+    	validate = regAge.test(input.value);
     
-	if (isNaN(age.value)) {
-		age.setAttribute('class', 'invalidInput');
-		(function () { alert('Please, enter number')})();
-	} else if (age.value <= 0) {
-		age.setAttribute('class', 'invalidInput');
-		(function () { alert('Age can\'t be zero or less, can it?')} )(); 
+	if (input.value === "") {
+		input.setAttribute('placeholder', 'required');
+		input.className = 'invalidInput';
+	} else if (!validate) {
+		input.className = 'invalidInput';
+		alert('Age can\'t be not a number, can it?'); 
 	} else {
-		age.setAttribute('class', 'pass');
-		age.setAttribute('data-valid', 'valid');
+		input.className = 'pass';
+		input.setAttribute('data-valid', 'valid');
 		submitEnable();
 	}
 }
@@ -145,7 +136,18 @@ function usernameValidation() {
     	template = /^user_([a-zA-Z0-9@\.]*)/i,
     	validate = template.test(input.value);
 	
-	checkInput(validate, input);
+	if (input.value === "") {
+		input.className = 'invalidInput';
+		input.setAttribute('placeholder', 'required');
+		setTimeout(function() {input.setAttribute('placeholder', 'like "user_25kld"')}, 1500);
+	} else if (!validate) {
+        input.className = 'invalidInput';
+        alert('Your username should start with \'user_\'');
+    } else {
+        input.className = 'pass';
+        input.setAttribute('data-valid', 'valid');
+        submitEnable();
+    }
 }
 
 
@@ -154,7 +156,18 @@ function dateValidation() {
     	dateReg = /([0-3][0-9])\/([0-1][0-9])\/([1-2][0-9][0-9][0-9])/,
     	validate = dateReg.test(input.value);
 	
-    checkInput(validate, input);
+	if (input.value === "") {
+		input.className = 'invalidInput';
+		input.setAttribute('placeholder', 'required');
+		setTimeout(function() {input.setAttribute('placeholder', '24/04/2017')}, 1500);
+	} else if (!validate) {
+        input.className = 'invalidInput';
+        alert('Your data is invalid 45');
+    } else {
+        input.className = 'pass';
+        input.setAttribute('data-valid', 'valid');
+        submitEnable();
+    }
 }
 
 
@@ -162,8 +175,19 @@ function nicknameValidation() {
 	var input = document.getElementById('nickname'),
 		nickReg = /\w+\.\w+/,
 		validate = nickReg.test(input.value);
-	
-    checkInput(validate, input);
+
+  if (input.value === "") {
+		input.className = 'invalidInput';
+		input.setAttribute('placeholder', 'required');
+		setTimeout(function() {input.setAttribute('placeholder', 'emma.watson')}, 1500);
+	} else if (!validate) {
+        input.className = 'invalidInput';
+        alert('Your data is invalid 45');
+    } else {
+        input.className = 'pass';
+        input.setAttribute('data-valid', 'valid');
+        submitEnable();
+    }
 }
 
 
