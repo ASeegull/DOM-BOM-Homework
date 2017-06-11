@@ -118,8 +118,9 @@ function ageValidation() {
     	validate = regAge.test(input.value);
     
 	if (input.value === "") {
-		input.setAttribute('placeholder', 'required');
 		input.className = 'invalidInput';
+		input.setAttribute('placeholder', 'required');
+		setTimeout(function() {input.setAttribute('placeholder', '18')}, 1500);
 	} else if (!validate) {
 		input.className = 'invalidInput';
 		alert('Age can\'t be not a number, can it?'); 
